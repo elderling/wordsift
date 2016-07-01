@@ -1,4 +1,4 @@
-package Sift;
+package WordSift;
 
 use strict;
 use warnings;

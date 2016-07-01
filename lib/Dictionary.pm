@@ -2,6 +2,7 @@ package Dictionary;
 
 use strict;
 use warnings;
+use v5.16;
 
 #use Readonly;
 
@@ -37,6 +38,10 @@ sub _load_dictionary {
     open ( my $fh, '<', $filename ) or die "Error loading $filename";
 
     my @dictionary = <$fh>;
+
+    my $chomped = chomp( @dictionary );
+
+    say '$chomped => ' . $chomped;
 
     $self->{'_word_list'} = \@dictionary;
 
