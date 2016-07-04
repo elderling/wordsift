@@ -2,6 +2,7 @@
 
 use Test2::Bundle::Extended;
 use aliased 'GameBoard';
+use Data::Dumper;
 
 #<<<
 
@@ -38,8 +39,11 @@ my $board_4x4_b = [
 #>>>
 
 GameBoard->spit_board($board_4x4_b);
-GameBoard->find_first_moves($board_4x4_b,'a');
-GameBoard->all_letters($board_4x4_b);
+my $first_moves = GameBoard->find_first_moves($board_4x4_b,'a');
+note Dumper $first_moves;
+
+my $all_letters = GameBoard->all_letters($board_4x4_b);
+note Dumper $all_letters;
 
 ok(1);
 
