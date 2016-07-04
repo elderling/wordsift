@@ -71,52 +71,79 @@ sub possible_moves {
     # x - 1, y - 0
     if ( $x > $min_x ) {
         my $move = { x => $x - 1, y => $y };
-        push @moves, $move;
+        if ( $class->letter_at( $board, $move ) ) {
+            push @moves, $move;
+        }
     }
 
     # y - 1, x - 0
     if ( $y > $min_y ) {
         my $move = { x => $x, y => $y - 1 };
-        push @moves, $move;
+        if ( $class->letter_at( $board, $move ) ) {
+            push @moves, $move;
+        }
     }
 
     # x + 1, y + 0
     if ( $x < $max_x ) {
         my $move = { x => $x + 1, y => $y };
-        push @moves, $move;
+        if ( $class->letter_at( $board, $move ) ) {
+            push @moves, $move;
+        }
     }
 
     # y + 1, x + 0
     if ( $y < $max_y ) {
         my $move = { x => $x, y => $y + 1 };
-        push @moves, $move;
+        if ( $class->letter_at( $board, $move ) ) {
+            push @moves, $move;
+        }
     }
 
     # x - 1, y - 1
     if ( $x > $max_x && $y > $min_y ) {
         my $move = { x => $x - 1, y => $y - 1 };
-        push @moves, $move;
+        if ( $class->letter_at( $board, $move ) ) {
+            push @moves, $move;
+        }
     }
 
     # x + 1, y + 1
     if ( $x < $max_x && $y < $max_y ) {
         my $move = { x => $x + 1, y => $y + 1 };
-        push @moves, $move;
+        if ( $class->letter_at( $board, $move ) ) {
+            push @moves, $move;
+        }
     }
 
     # x + 1, y - 1
     if ( $x < $max_x && $y > $min_y ) {
         my $move = { x => $x + 1, y => $y - 1 };
-        push @moves, $move;
+        if ( $class->letter_at( $board, $move ) ) {
+            push @moves, $move;
+        }
     }
 
     # x - 1, y + 1
     if ( $x > $min_x && $y < $max_y ) {
         my $move = { x => $x - 1, y => $y + 1 };
-        push @moves, $move;
+        if ( $class->letter_at( $board, $move ) ) {
+            push @moves, $move;
+        }
     }
 
     return \@moves;
+}
+
+sub letter_at {
+    my $class      = shift;
+    my $board      = shift;
+    my $coordinate = shift;
+
+    my $x = $coordinate->{x};
+    my $y = $coordinate->{y};
+
+    return $board->[$x][$y];
 }
 
 1;
