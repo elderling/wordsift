@@ -68,44 +68,52 @@ sub possible_moves {
     my $min_y = 0;
     my $max_y = $#{ $board->[$x] };
 
-# x - 1, y - 0
+    # x - 1, y - 0
     if ( $x > $min_x ) {
-        push @moves, { x => $x - 1, y => $y };
+        my $move = { x => $x - 1, y => $y };
+        push @moves, $move;
     }
 
-# y - 1, x - 0
+    # y - 1, x - 0
     if ( $y > $min_y ) {
-        push @moves, { x => $x, y => $y - 1 };
+        my $move = { x => $x, y => $y - 1 };
+        push @moves, $move;
     }
 
-# x + 1, y + 0
+    # x + 1, y + 0
     if ( $x < $max_x ) {
-        push @moves, { x => $x + 1, y => $y };
+        my $move = { x => $x + 1, y => $y };
+        push @moves, $move;
     }
 
-# y + 1, x + 0
+    # y + 1, x + 0
     if ( $y < $max_y ) {
-        push @moves, { x => $x, y => $y + 1};
+        my $move = { x => $x, y => $y + 1 };
+        push @moves, $move;
     }
 
-# x - 1, y - 1
+    # x - 1, y - 1
     if ( $x > $max_x && $y > $min_y ) {
-        push @moves, { x => $x - 1, y => $y-1 };
+        my $move = { x => $x - 1, y => $y - 1 };
+        push @moves, $move;
     }
 
-# x + 1, y + 1
+    # x + 1, y + 1
     if ( $x < $max_x && $y < $max_y ) {
-        push @moves, { x => $x + 1, y => $y + 1 };
+        my $move = { x => $x + 1, y => $y + 1 };
+        push @moves, $move;
     }
 
-# x + 1, y - 1
+    # x + 1, y - 1
     if ( $x < $max_x && $y > $min_y ) {
-        push @moves, { x => $x + 1, y => $y -1};
+        my $move = { x => $x + 1, y => $y - 1 };
+        push @moves, $move;
     }
 
-# x - 1, y + 1
-    if ($x > $min_x && $y < $max_y  ) {
-        push @moves, { x => $x - 1, y => $y + 1};
+    # x - 1, y + 1
+    if ( $x > $min_x && $y < $max_y ) {
+        my $move = { x => $x - 1, y => $y + 1 };
+        push @moves, $move;
     }
 
     return \@moves;
