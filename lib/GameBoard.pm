@@ -79,6 +79,24 @@ sub find_first_moves {
     return \@matches;
 }
 
+sub all_letters {
+    my $board = $board_4x4_b;
+
+    my %all_letters;
+    for my $x ( 0 .. $#{$board} ) {
+        for my $y ( 0 .. $#{ $board->[$x] } ) {
+            #say "x => $x , y => $y, value => " . $board->[$x][$y];
+            if ( defined $board->[$x][$y] ) {
+                $all_letters{$board->[$x][$y]}++;
+            }
+        }
+    }
+
+    say Dumper \%all_letters;
+
+    return \%all_letters;
+
+}
 # possible moves:
 # x + 1, y + 0
 # x - 1, y - 0

@@ -10,5 +10,7 @@ GameBoard->spit_board;
 
 GameBoard->find_first_moves('a');
 
+GameBoard->all_letters();
+
 
 exit;
