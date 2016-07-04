@@ -63,43 +63,48 @@ sub possible_moves {
 
     my @moves;
 
+    my $min_x = 0;
+    my $max_x = $#{$board};
+    my $min_y = 0;
+    my $max_y = $#{ $board->[$x] };
+
 # x - 1, y - 0
-    if ( $x > 0 ) {
+    if ( $x > $min_x ) {
         push @moves, { x => $x - 1, y => $y };
     }
 
 # y - 1, x - 0
-    if ( $y > 0 ) {
+    if ( $y > $min_y ) {
         push @moves, { x => $x, y => $y - 1 };
     }
 
 # x + 1, y + 0
-    if ( $x < $#{ $board } ) {
+    if ( $x < $max_x ) {
         push @moves, { x => $x + 1, y => $y };
     }
 
 # y + 1, x + 0
-    if ( $y < $#{ $board->[$x] } ) {
+    if ( $y < $max_y ) {
         push @moves, { x => $x, y => $y + 1};
     }
 
 # x - 1, y - 1
-    if ( $x > 0 && $y > 0 ) {
+    if ( $x > $max_x && $y > $min_y ) {
         push @moves, { x => $x - 1, y => $y-1 };
     }
 
 # x + 1, y + 1
-    if ( $x < $#{$board} && $y < $#{ $board->[$x] } ) {
+    if ( $x < $max_x && $y < $max_y ) {
         push @moves, { x => $x + 1, y => $y + 1 };
     }
 
 # x + 1, y - 1
-    if ( $x < $#{$board} && $y > 0 ) {
+    if ( $x < $max_x && $y > $min_y ) {
         push @moves, { x => $x + 1, y => $y -1};
     }
 
 # x - 1, y + 1
-    if ($x > 0 && $y < $#{ $board->[$x] } ) {
+    if ($x > $min_x && $y < $max_y  ) {
         push @moves, { x => $x - 1, y => $y + 1};
     }
 
