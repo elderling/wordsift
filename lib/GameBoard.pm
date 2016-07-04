@@ -63,17 +63,44 @@ sub possible_moves {
 
     my @moves;
 
+# x - 1, y - 0
     if ( $x > 0 ) {
         push @moves, { x => $x - 1, y => $y };
     }
+
+# y - 1, x - 0
     if ( $y > 0 ) {
         push @moves, { x => $x, y => $y - 1 };
     }
+
+# x + 1, y + 0
     if ( $x < $#{ $board } ) {
         push @moves, { x => $x + 1, y => $y };
     }
+
+# y + 1, x + 0
     if ( $y < $#{ $board->[$x] } ) {
         push @moves, { x => $x, y => $y + 1};
+    }
+
+# x - 1, y - 1
+    if ( $x > 0 && $y > 0 ) {
+        push @moves, { x => $x - 1, y => $y-1 };
+    }
+
+# x + 1, y + 1
+    if ( $x < $#{$board} && $y < $#{ $board->[$x] } ) {
+        push @moves, { x => $x + 1, y => $y + 1 };
+    }
+
+# x + 1, y - 1
+    if ( $x < $#{$board} && $y > 0 ) {
+        push @moves, { x => $x + 1, y => $y -1};
+    }
+
+# x - 1, y + 1
+    if ($x > 0 && $y < $#{ $board->[$x] } ) {
+        push @moves, { x => $x - 1, y => $y + 1};
     }
 
     return \@moves;
@@ -85,7 +112,7 @@ sub possible_moves {
 # x + 1, y + 0
 # x - 1, y - 0
 # y + 1, x + 0
-# y - 1, y - 0
+# y - 1, x - 0
 # 
 # x + 1, y + 1
 # x + 1, y - 1
