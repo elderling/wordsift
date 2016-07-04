@@ -4,6 +4,7 @@ use v5.16;
 use strict;
 use warnings;
 
+use Carp;
 use Data::Dumper;
 
 sub spit_board {
@@ -69,6 +70,7 @@ sub possible_moves {
     my $min_y = 0;
     my $max_y = $#{ $board->[$x] };
 
+
     # x - 1, y - 0
     if ( $x > $min_x ) {
         my $move = { x => $x - 1, y => $y };
@@ -102,7 +104,7 @@ sub possible_moves {
     }
 
     # x - 1, y - 1
-    if ( $x > $max_x && $y > $min_y ) {
+    if ( $x > $min_x && $y > $min_y ) {
         my $move = { x => $x - 1, y => $y - 1 };
         if ( $class->letter_at( $board, $move ) ) {
             push @moves, $move;
