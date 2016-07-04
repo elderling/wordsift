@@ -30,36 +30,33 @@ my $board_3x3_b = [
 
 # 4 letters 4 letters 8 letters
 
-#my $board_4x4_b = [
-#    [qw( f l a g )],
-#    [qw( h s r a )],
-#    [qw( f i c t )],
-#    [qw( s k e n )],
-#];
-my $board_4x4_b = [
-    [qw( f l a g )],
-    [qw( h s r a )],
-    [qw( f i c t )],
-    [qw( s k e n )],
-];
+sub board_4x4_b {
+    my $board_4x4_b = [
+        [qw( f l a g )],
+        [qw( h s r a )],
+        [qw( f i c t )],
+        [qw( s k e n )],
+    ];
+    return $board_4x4_b;
+}
+
 #>>>
 
-GameBoard->spit_board($board_4x4_b);
+GameBoard->spit_board( board_4x4_b() );
 
-my $first_moves = GameBoard->find_first_moves($board_4x4_b,'a');
+my $first_moves = GameBoard->find_first_moves( board_4x4_b(), 'a' );
 note Dumper $first_moves;
 
-cmp_ok( scalar @{$first_moves}, 'eq', 2, 'number of first moves for "a"') ;
+cmp_ok( scalar @{$first_moves}, 'eq', 2, 'number of first moves for "a"' );
 
-my $all_letters = GameBoard->all_letters($board_4x4_b);
+my $all_letters = GameBoard->all_letters( board_4x4_b() );
 note Dumper $all_letters;
 
-cmp_ok( scalar keys %{$all_letters}, 'eq', 13, 'unique letters') ;
+cmp_ok( scalar keys %{$all_letters}, 'eq', 13, 'unique letters' );
 
-GameBoard->spit_board($board_3x3_a);
-my $possible_moves = GameBoard->possible_moves($board_3x3_a, {x=>1, y=>1});
+my $possible_moves =
+  GameBoard->possible_moves( board_4x4_b(), { x => 1, y => 1 } );
 note Dumper $possible_moves;
-cmp_ok( scalar @{$possible_moves}, 'eq', 8, 'number of possible moves') ;
-
+cmp_ok( scalar @{$possible_moves}, 'eq', 8, 'number of possible moves' );
 
 done_testing;
