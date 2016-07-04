@@ -52,6 +52,35 @@ sub all_letters {
     return \%all_letters;
 
 }
+
+sub possible_moves {
+    my $class      = shift;
+    my $board      = shift;
+    my $coordinate = shift;
+
+    my $x = $coordinate->{x};
+    my $y = $coordinate->{y};
+
+    my @moves;
+
+    if ( $x > 0 ) {
+        push @moves, { x => $x - 1, y => $y };
+    }
+    if ( $y > 0 ) {
+        push @moves, { x => $x, y => $y - 1 };
+    }
+    if ( $x < $#{ $board } ) {
+        push @moves, { x => $x + 1, y => $y };
+    }
+    if ( $y < $#{ $board->[$x] } ) {
+        push @moves, { x => $x, y => $y + 1};
+    }
+
+    return \@moves;
+}
+
+1;
+
 # possible moves:
 # x + 1, y + 0
 # x - 1, y - 0
@@ -73,4 +102,4 @@ sub all_letters {
 # 6) continue until condition not met or have full word
 
 
-1;
+

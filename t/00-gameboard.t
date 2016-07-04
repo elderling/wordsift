@@ -45,6 +45,9 @@ note Dumper $first_moves;
 my $all_letters = GameBoard->all_letters($board_4x4_b);
 note Dumper $all_letters;
 
+my $possible_moves = GameBoard->possible_moves($board_3x3_a, {x=>1, y=>1});
+note Dumper $possible_moves;
+
 ok(1);
 
 done_testing;
