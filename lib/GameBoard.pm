@@ -4,6 +4,8 @@ use v5.16;
 use strict;
 use warnings;
 
+use Data::Dumper;
+
 #<<<
 
 # 4 letters 5 letters
@@ -43,11 +45,6 @@ sub spit_board {
 
     # On depth 0, any unused slot is a valid move
 
-    my $current_x = 0;
-    my $current_y = 0;
-
-    my $desired_letter;
-
     my $board = $board_4x4_b;
     for my $x ( 0 .. $#{$board} ) {
         for my $y ( 0 .. $#{ $board->[$x] } ) {
@@ -55,5 +52,52 @@ sub spit_board {
         }
     }
 }
+
+sub find_first_moves {
+    my $letter = shift;
+
+    my $board = $board_4x4_b;
+
+    my $letter = 'a';
+
+    my $current_x = 0;
+    my $current_y = 0;
+
+    my @matches;
+
+    for my $x ( 0 .. $#{$board} ) {
+        for my $y ( 0 .. $#{ $board->[$x] } ) {
+            #say "x => $x , y => $y, value => " . $board->[$x][$y];
+            if ( defined $board->[$x][$y] && $board->[$x][$y] eq $letter ) {
+                push @matches, { x => $x, y => $y };
+            }
+        }
+    }
+
+    say Dumper \@matches;
+
+    return \@matches;
+}
+
+# possible moves:
+# x + 1, y + 0
+# x - 1, y - 0
+# y + 1, x + 0
+# y - 1, y - 0
+# 
+# x + 1, y + 1
+# x + 1, y - 1
+# x - 1, y + 1
+# x - 1, y - 1
+
+# foreach possible move
+# 1) check that the move points to a letter
+# 2) check that the move points to the letter we want
+# 3) if we already know that the word works, make sure that we take alternate
+#    routes where needed (more than one way to get to destination word)
+# 4) mark the current letter as unavailable
+# 5) record the move
+# 6) continue until condition not met or have full word
+
 
 1;
