@@ -18,6 +18,7 @@ sub spit_board {
     return;
 }
 
+# not all moves, moves for passed-in letter
 sub find_first_moves {
     my $class = shift;
     my $board = shift;
