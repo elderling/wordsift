@@ -1,0 +1,8 @@
+.build
+#*#
+*~
+WordSift-*
+*.swp
+.prove
+*.bak
+perltidy.ERR

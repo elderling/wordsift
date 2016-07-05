@@ -3,6 +3,8 @@ package WordSift;
 use strict;
 use warnings;
 
+# ABSTRACT: Various utilities for screening/filtering English words
+
 my $pool_hash;
 
 sub get_pool_hash {
