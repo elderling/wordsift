@@ -149,6 +149,39 @@ sub letter_at {
     return $board->[$x][$y];
 }
 
+sub valid_moves {
+    my $class      = shift;
+    my $board      = shift;
+    my $coordinate = shift;
+    my $letter = shift;
+
+    my $possible_moves = $class->possible_moves($board, $coordinate);
+
+    my @valid_moves;
+
+    for my $move ( @{$possible_moves} ) {
+        if ( $class->letter_at( $board, $coordinate ) eq $letter ) {
+            push @valid_moves, $move;
+        }
+    }
+
+    return \@valid_moves;
+}
+
+sub get_paths {
+    my $class = shift;
+    my $current_path = shift // [];
+    my $valid_moves = shift;
+
+    my @return_paths;
+    for my $move (@{$valid_moves}) {
+        push @return_paths, [ @{$current_path}, $move ];
+
+    }
+
+    return \@return_paths;
+}
+
 1;
 
 # possible moves:
