@@ -1,6 +1,9 @@
 #!/usr/bin/env perl;
 
+use v5.16;
 use Test2::Bundle::Extended;
+use Test2::Bundle::More;
+use Test2::Tools::Compare qw( item in_set hash array bag );
 use aliased 'GameBoard';
 use Data::Dumper;
 
@@ -42,21 +45,38 @@ sub board_4x4_b {
 
 #>>>
 
-GameBoard->spit_board( board_4x4_b() );
+#GameBoard->spit_board( board_4x4_b() );
 
 my $first_moves = GameBoard->find_first_moves( board_4x4_b(), 'a' );
-note Dumper $first_moves;
 
 cmp_ok( scalar @{$first_moves}, 'eq', 2, 'number of first moves for "a"' );
 
-my $all_letters = GameBoard->all_letters( board_4x4_b() );
-note Dumper $all_letters;
+is_deeply( $first_moves, [ { x => 0, y => 2 }, { x => 1, y => 3 } ] , "correct first moves for letter 'a'");
 
-cmp_ok( scalar keys %{$all_letters}, 'eq', 13, 'unique letters' );
+my $all_letters = GameBoard->all_letters( board_4x4_b() );
+
+cmp_ok( scalar keys %{$all_letters}, 'eq', 13, 'got 13 unique letters' );
 
 my $possible_moves =
   GameBoard->possible_moves( board_4x4_b(), { x => 1, y => 1 } );
-note Dumper $possible_moves;
-cmp_ok( scalar @{$possible_moves}, 'eq', 8, 'number of possible moves' );
+cmp_ok( scalar @{$possible_moves}, 'eq', 8, 'number of possible moves from { x => 1, y =>1 } is 8' );
+
+is_deeply(
+    $possible_moves,
+    bag {
+        item hash { field x => 0; field y => 0 };
+        item hash { field x => 0; field y => 1 };
+        item hash { field x => 0; field y => 2 };
+        item hash { field x => 1; field y => 0 };
+        item hash { field x => 1; field y => 2 };
+        item hash { field x => 2; field y => 0 };
+        item hash { field x => 2; field y => 1 };
+        item hash { field x => 2; field y => 2 };
+    }
+);
+my $valid_moves = GameBoard->valid_moves( board_4x4_b(), { x => 2, y => 1 }, 'a' );
+
+#is_deeply( $valid_moves, [ { 3, 0 }, { 4, 1 } ] );
+
 
 done_testing;
