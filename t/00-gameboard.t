@@ -51,18 +51,18 @@ my $first_moves = GameBoard->find_first_moves( board_4x4_b(), 'a' );
 
 cmp_ok( scalar @{$first_moves}, 'eq', 2, 'number of first moves for "a"' );
 
-is_deeply( $first_moves, [ { x => 0, y => 2 }, { x => 1, y => 3 } ] , "correct first moves for letter 'a'");
+is_deeply(
+    $first_moves,
+    [ { x => 0, y => 2 }, { x => 1, y => 3 } ],
+    "correct first moves for letter 'a'"
+);
 
 my $all_letters = GameBoard->all_letters( board_4x4_b() );
 
 cmp_ok( scalar keys %{$all_letters}, 'eq', 13, 'got 13 unique letters' );
 
-my $possible_moves =
-  GameBoard->possible_moves( board_4x4_b(), { x => 1, y => 1 } );
-cmp_ok( scalar @{$possible_moves}, 'eq', 8, 'number of possible moves from { x => 1, y =>1 } is 8' );
-
 is_deeply(
-    $possible_moves,
+    GameBoard->possible_moves( board_4x4_b(), { x => 1, y => 1 } ),
     bag {
         item hash { field x => 0; field y => 0; };
         item hash { field x => 0; field y => 1; };
@@ -73,17 +73,18 @@ is_deeply(
         item hash { field x => 2; field y => 1; };
         item hash { field x => 2; field y => 2; };
         end();
-    }
+    },
+    'Got correct possible_moves(board_4x4_b(), { x => 1, y => 1 } )'
 );
-my $valid_moves = GameBoard->valid_moves( board_4x4_b(), { x => 2, y => 1 }, 'a' );
 
 is_deeply(
-    $valid_moves,
+    GameBoard->valid_moves( board_4x4_b(), { x => 2, y => 1 }, 'a' ),
     bag {
         item hash { field x => 3; field y => 0; };
         item hash { field x => 4; field y => 1; };
         end();
-    }
+    },
+    'got correct valid_moves( board_4x4_b(), { x => 2, y => 1 }, "a" )'
 );
 
 done_testing;
