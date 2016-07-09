@@ -64,19 +64,26 @@ cmp_ok( scalar @{$possible_moves}, 'eq', 8, 'number of possible moves from { x =
 is_deeply(
     $possible_moves,
     bag {
-        item hash { field x => 0; field y => 0 };
-        item hash { field x => 0; field y => 1 };
-        item hash { field x => 0; field y => 2 };
-        item hash { field x => 1; field y => 0 };
-        item hash { field x => 1; field y => 2 };
-        item hash { field x => 2; field y => 0 };
-        item hash { field x => 2; field y => 1 };
-        item hash { field x => 2; field y => 2 };
+        item hash { field x => 0; field y => 0; };
+        item hash { field x => 0; field y => 1; };
+        item hash { field x => 0; field y => 2; };
+        item hash { field x => 1; field y => 0; };
+        item hash { field x => 1; field y => 2; };
+        item hash { field x => 2; field y => 0; };
+        item hash { field x => 2; field y => 1; };
+        item hash { field x => 2; field y => 2; };
+        end();
     }
 );
 my $valid_moves = GameBoard->valid_moves( board_4x4_b(), { x => 2, y => 1 }, 'a' );
 
-#is_deeply( $valid_moves, [ { 3, 0 }, { 4, 1 } ] );
-
+is_deeply(
+    $valid_moves,
+    bag {
+        item hash { field x => 3; field y => 0; };
+        item hash { field x => 4; field y => 1; };
+        end();
+    }
+);
 
 done_testing;
