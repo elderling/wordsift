@@ -45,14 +45,8 @@ sub board_4x4_b {
 
 #>>>
 
-#GameBoard->spit_board( board_4x4_b() );
-
-my $first_moves = GameBoard->find_first_moves( board_4x4_b(), 'a' );
-
-cmp_ok( scalar @{$first_moves}, 'eq', 2, 'number of first moves for "a"' );
-
 is_deeply(
-    $first_moves,
+    GameBoard->find_first_moves( board_4x4_b(), 'a' ),
     [ { x => 0, y => 2 }, { x => 1, y => 3 } ],
     "correct first moves for letter 'a'"
 );
