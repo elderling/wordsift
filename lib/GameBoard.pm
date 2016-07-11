@@ -160,7 +160,7 @@ sub valid_moves {
     my @valid_moves;
 
     for my $move ( @{$possible_moves} ) {
-        if ( $class->letter_at( $board, $coordinate ) eq $letter ) {
+        if ( $class->letter_at( $board, $move ) eq $letter ) {
             push @valid_moves, $move;
         }
     }
