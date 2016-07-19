@@ -7,43 +7,48 @@ use Test2::Tools::Compare qw( is item in_set hash array bag );
 use aliased 'GameBoard';
 use Data::Dumper;
 
-#<<<
-
 # 4 letters 5 letters
-my $board_3x3_a = [ 
-    [qw( b e l )], 
-    [qw( k o b )], 
-    [qw( o o w )], 
-];
+sub board_3x3_a {
+    my $board_3x3_a = [    #<<<
+        [qw( b e l )],
+        [qw( k o b )],
+        [qw( o o w )],     #>>>
+    ];
+
+    return $board_3x3_a;
+}
 
 # 4 letters 6 letters 6 letters
-my $board_4x4_a = [
-    [qw( l o g b )],
-    [qw( a l e u )],
-    [qw( t t e g )],
-    [qw( o r a n )],
-];
+sub board_4x4_a {
+    my $board_4x4_a = [    #<<<
+        [qw( l o g b )],
+        [qw( a l e u )],
+        [qw( t t e g )],
+        [qw( o r a n )],    #>>>
+    ];
+    return $board_4x4_a;
+}
 
 # 4 letters 5 letters
-my $board_3x3_b = [
-    [qw( s m o )],
-    [qw( k t e )],
-    [qw( e t n )],
-];
+sub board_3x3_b {
+    my $board_3x3_b = [    #>>>
+        [qw( s m o )],
+        [qw( k t e )],
+        [qw( e t n )],     #>>>
+    ];
+}
 
 # 4 letters 4 letters 8 letters
 
 sub board_4x4_b {
-    my $board_4x4_b = [
+    my $board_4x4_b = [ #<<<
         [qw( f l a g )],
         [qw( h s r a )],
         [qw( f i c t )],
         [qw( s k e n )],
     ];
-    return $board_4x4_b;
+    return $board_4x4_b; #>>>
 }
-
-#>>>
 
 is_deeply(
     GameBoard->find_first_moves( board_4x4_b(), 'a' ),
