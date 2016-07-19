@@ -3,7 +3,7 @@
 use v5.16;
 use Test2::Bundle::Extended;
 use Test2::Bundle::More;
-use Test2::Tools::Compare qw( item in_set hash array bag );
+use Test2::Tools::Compare qw( is item in_set hash array bag );
 use aliased 'GameBoard';
 use Data::Dumper;
 
@@ -55,7 +55,7 @@ my $all_letters = GameBoard->all_letters( board_4x4_b() );
 
 cmp_ok( scalar keys %{$all_letters}, 'eq', 13, 'got 13 unique letters' );
 
-is_deeply(
+is(
     GameBoard->possible_moves( board_4x4_b(), { x => 1, y => 1 } ),
     bag {
         item hash { field x => 0; field y => 0; };
@@ -71,7 +71,7 @@ is_deeply(
     'Got correct possible_moves(board_4x4_b(), { x => 1, y => 1 } )'
 );
 
-is_deeply(
+is(
     GameBoard->valid_moves( board_4x4_b(), { x => 2, y => 1 }, 'a' ),
     bag {
         item hash { field x => 3; field y => 0; };
