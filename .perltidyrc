@@ -1,0 +1,4 @@
+--backup-and-modify-in-place
+--maximum-line-length=96
+--break-at-old-comma-breakpoints
+--nodelete-old-newlines
