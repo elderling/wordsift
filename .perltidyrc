@@ -2,3 +2,5 @@
 --maximum-line-length=96
 --break-at-old-comma-breakpoints
 --nodelete-old-newlines
+--noadd-semicolons
+--nodelete-semicolons
