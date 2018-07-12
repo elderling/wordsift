@@ -1,0 +1,3 @@
+*.pm filter=perltidy
+*.pl filter=perltidy
+*.t filter=perltidy
