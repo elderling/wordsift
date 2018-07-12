@@ -7,6 +7,7 @@ use warnings;
 use Carp;
 use Data::Dumper;
 
+# TODO: Add Some POD
 sub spit_board {
     my $class = shift;
     my $board = shift;
@@ -21,8 +22,8 @@ sub spit_board {
 
 # not all moves, moves for passed-in letter
 sub find_first_moves {
-    my $class = shift;
-    my $board = shift;
+    my $class  = shift;
+    my $board  = shift;
     my $letter = shift;
 
     my @matches;
@@ -46,7 +47,7 @@ sub all_letters {
     for my $x ( 0 .. $#{$board} ) {
         for my $y ( 0 .. $#{ $board->[$x] } ) {
             if ( defined $board->[$x][$y] ) {
-                $all_letters{$board->[$x][$y]}++;
+                $all_letters{ $board->[$x][$y] }++;
             }
         }
     }
@@ -69,7 +70,6 @@ sub possible_moves {
     my $max_x = $#{$board};
     my $min_y = 0;
     my $max_y = $#{ $board->[$x] };
-
 
     # x - 1, y - 0
     if ( $x > $min_x ) {
@@ -153,9 +153,9 @@ sub valid_moves {
     my $class      = shift;
     my $board      = shift;
     my $coordinate = shift;
-    my $letter = shift;
+    my $letter     = shift;
 
-    my $possible_moves = $class->possible_moves($board, $coordinate);
+    my $possible_moves = $class->possible_moves( $board, $coordinate );
 
     my @valid_moves;
 
@@ -169,12 +169,12 @@ sub valid_moves {
 }
 
 sub get_paths {
-    my $class = shift;
+    my $class        = shift;
     my $current_path = shift // [];
-    my $valid_moves = shift;
+    my $valid_moves  = shift;
 
     my @return_paths;
-    for my $move (@{$valid_moves}) {
+    for my $move ( @{$valid_moves} ) {
         push @return_paths, [ @{$current_path}, $move ];
 
     }
@@ -189,7 +189,7 @@ sub get_paths {
 # x - 1, y - 0
 # y + 1, x + 0
 # y - 1, x - 0
-# 
+#
 # x + 1, y + 1
 # x + 1, y - 1
 # x - 1, y + 1
@@ -203,6 +203,4 @@ sub get_paths {
 # 4) mark the current letter as unavailable
 # 5) record the move
 # 6) continue until condition not met or have full word
-
-
 
