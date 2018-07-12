@@ -4,10 +4,6 @@ use strict;
 use warnings;
 use v5.16;
 
-#use Readonly;
-
-#Readonly my $DEFAULT_DICTIONARY => 'dict_merged_00.txt';
-
 my $DEFAULT_DICTIONARY = './dict_merged_00.txt';
 
 sub new {
@@ -20,7 +16,7 @@ sub new {
 
     my $filename = $param->{'filename'} || $DEFAULT_DICTIONARY;
 
-    $self->_load_dictionary( $filename );
+    $self->_load_dictionary($filename);
 
     return $self;
 }
@@ -32,14 +28,14 @@ sub word_list {
 }
 
 sub _load_dictionary {
-    my $self = shift;
+    my $self     = shift;
     my $filename = shift;
 
-    open ( my $fh, '<', $filename ) or die "Error loading $filename";
+    open( my $fh, '<', $filename ) or die "Error loading $filename";
 
     my @dictionary = <$fh>;
 
-    my $chomped = chomp( @dictionary );
+    my $chomped = chomp(@dictionary);
 
     say '$chomped => ' . $chomped;
 
