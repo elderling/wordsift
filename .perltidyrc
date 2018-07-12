@@ -4,3 +4,4 @@
 --nodelete-old-newlines
 --noadd-semicolons
 --nodelete-semicolons
+--converge
