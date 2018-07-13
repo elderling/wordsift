@@ -7,6 +7,7 @@ use v5.16;
 my $DEFAULT_DICTIONARY = './dict_merged_00.txt';
 
 # TODO: Add POD
+# Add some other things, too
 
 sub new {
     my $class = shift;
