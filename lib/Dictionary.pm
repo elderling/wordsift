@@ -7,20 +7,21 @@ use v5.16;
 my $DEFAULT_DICTIONARY = './dict_merged_00.txt';
 
 # TODO: Add POD
+# Not Clean Not Smudge
 
 sub new {
-    my $class = shift;
-    my $param = shift;
+my $class = shift;
+my $param = shift;
 
-    my $self = {};
+my $self = {};
 
-    bless $self, $class;
+bless $self, $class;
 
-    my $filename = $param->{'filename'} || $DEFAULT_DICTIONARY;
+my $filename = $param->{'filename'} || $DEFAULT_DICTIONARY;
 
-    $self->_load_dictionary($filename);
+$self->_load_dictionary($filename);
 
-    return $self;
+return $self;
 }
 
 sub word_list {
